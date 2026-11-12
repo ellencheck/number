@@ -102,17 +102,20 @@ function toRussian(s){
   return [...out].map(ch=>map[ch]||ch).join("");
 }
 function pluralIllion(name){
+  if(name==="миллиард")return "миллиардов";
   return name.replace(/иллион$/,"иллионов");
 }
 function baseName(index){
   const latin=illionName(index);
-  const russian=toRussian(latin);
+  // Русские традиционные формы не всегда совпадают с буквальной транслитерацией английской короткой шкалы.
+  const russianOverrides={1:"миллион",2:"миллиард",3:"триллион",4:"квадриллион",5:"квинтиллион",6:"секстиллион",7:"септиллион",8:"октиллион",9:"нониллион",10:"дециллион",11:"ундециллион",12:"дуодециллион",13:"тредециллион",14:"кваттуордециллион",15:"квиндециллион",16:"седециллион",17:"септендециллион",18:"октодециллион",19:"новемдециллион",20:"вигинтиллион",100:"центиллион",1000:"миллиллион"};
+  const russian=russianOverrides[index]||toRussian(latin);
   return {latin,russian};
 }
 function classify(index,power){
   if(index<=9)return {label:"Устоявшееся название",tag:"tag-green",kind:"common"};
-  if(index<=20||index===100||index===1000)return {label:"Редкое, но зафиксированное название",tag:"tag-amber",kind:"attested"};
-  return {label:"Систематическое название по латинской модели",tag:"tag-violet",kind:"system"};
+  if(index===100||index===1000)return {label:"Редкое, зафиксированное название",tag:"tag-amber",kind:"attested"};
+  return {label:"Систематическое название по латинским числовым элементам",tag:"tag-violet",kind:"system"};
 }
 function describe(raw){
   const word=raw.toLowerCase().replace(/ё/g,"е");
