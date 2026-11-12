@@ -84,10 +84,10 @@ function showResult(title,p,label,latin="",zeros=fmt(p),notation="10"){
  document.getElementById("result").innerHTML="<h2>"+title+"</h2><p><span class='tag "+tag+"'>"+caption+"</span></p>"+(latin?"<p><b>Латинская форма:</b> "+latin+"</p>":"")+"<p><b>Степень:</b> <span class='number'>"+powerText+"</span></p><p><b>Количество нулей:</b> "+zeros+"</p>";
 }
 function describe(raw){
- const s=raw.trim().replace(/[\\s,]/g,"").toLowerCase();
+ const s=raw.trim().replace(/[\s,]/g,"").toLowerCase();
  if(s==="гугол"||s==="googol"){showResult("Гугол","100","rare","googol","100");return;}
  if(s==="гуголплекс"||s==="googolplex"){showResult("Гуголплекс","","rare","googolplex","гугол","10^(10¹⁰⁰)");return;}
- if(!/^\\d+$/.test(s))throw Error("Введи показатель степени цифрами.");
+ if(!/^[\d]+$/.test(s))throw Error("Введи показатель степени цифрами.");
  const p=BigInt(s);
  if(p>3000000000000n)throw Error("Слишком большой показатель для словесного названия.");
  if(p===0n){showResult("Один","0","common","","0");return;}
