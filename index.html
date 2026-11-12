@@ -23,89 +23,63 @@
 </main>
 <script>
 const known={
-3:"тысяча",6:"миллион",9:"миллиард",12:"триллион",15:"квадриллион",18:"квинтиллион",21:"секстиллион",24:"септиллион",27:"октиллион",30:"нониллион",33:"дециллион",36:"ундециллион",39:"дуодециллион",42:"тредециллион",45:"кваттуордециллион",48:"квиндециллион",51:"сексдециллион",54:"септендециллион",57:"октодециллион",60:"новемдециллион",63:"вигинтиллион",66:"унвигинтиллион",69:"дуовигинтиллион",72:"тревигинтиллион",75:"кваттуорвигинтиллион",78:"квинвигинтиллион",81:"сексвигинтиллион",84:"септенвигинтиллион",87:"октовигинтиллион",90:"новемвигинтиллион",93:"тригинтиллион",96:"унтригинтиллион",99:"дуотригинтиллион"
+  3:"тысяча",
+  6:"миллион",
+  9:"миллиард",
+  12:"триллион",
+  15:"квадриллион",
+  18:"квинтиллион",
+  21:"секстиллион",
+  24:"септиллион",
+  27:"октиллион",
+  30:"нониллион",
+  33:"дециллион"
 };
-const units=["","un","duo","tre","quattuor","quin","se","septe","octo","nove"];
-const tens=[
-["",[]],["deci",[,,,,,,,"n",,"n",0]],["viginti",[,,,"s",,,"s","m",,"m",0]],
-["triginta",[,,,"s",,,"s","n",,"n",1]],["quadraginta",[,,,"s",,,"s","n",,"n",1]],
-["quinquaginta",[,,,"s",,,"s","n",,"n",1]],["sexaginta",[,,,,,,,"n",,"n",1]],
-["septuaginta",[,,,,,,,"n",,"n",1]],["octoginta",[,,,,,,"x","m",,"m",1]],["nonaginta",[,,,,,,,,,,1]]
-];
-const hundreds=[
-["",[]],["centi",[,,,,,,"x","n",,"n"]],["ducenti",[,,,,,,,"n",,"n"]],
-["trecenti",[,,,"s",,,"s","n",,"n"]],["quadringenti",[,,,"s",,,"s","n",,"n"]],
-["quingenti",[,,,"s",,,"s","n",,"n"]],["sescenti",[,,,,,,,"n",,"n"]],
-["septingenti",[,,,,,,,"n",,"n"]],["octingenti",[,,,,,,"x","m",,"m"]],["nongenti",[,,,,,,,,,]]
-];
-function groupName(power){
- if(power===0)return "nillion";
- if(power===1)return "thousand";
- if(power<11)return ["","thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion"][power];
- const v=power-1,h=Math.floor(v/100),t=Math.floor(v%100/10),u=v%10;
- let un=units[u],tn=tens[t][0]||"",hn=hundreds[h][0]||"";
- if(!h&&tens[t][1][10])tn=tn.slice(0,-1)+"i";
- if(t)tn=(tens[t][1][u]||"")+tn;
- else if(h&&!t)hn=(hundreds[h][1][u]||"")+hn;
- return un+tn+hn+"llion";
-}
-function zillionName(index){
- if(index<0n)return "";
- if(index<1000n)return groupName(Number(index)+1);
- const chunks=[];let n=index;
- while(n>0n){chunks.unshift(Number(n%1000n));n/=1000n;}
- return chunks.map((part,i)=>i===chunks.length-1?groupName(part+1):groupName(part===0?0:part+1).replace(/on$/,"i")).join("");
-}
-function fmt(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g," ");}
+const plural={
+  3:"тысяч",
+  6:"миллионов",
+  9:"миллиардов",
+  12:"триллионов",
+  15:"квадриллионов",
+  18:"квинтиллионов",
+  21:"секстиллионов",
+  24:"септиллионов",
+  27:"октиллионов",
+  30:"нониллионов",
+  33:"дециллионов"
+};
 const googol=10n**100n;
-function toCyrillic(name){
- const pairs=[["qu","кв"],["ch","ч"],["ph","ф"],["th","т"],["sh","ш"],["zh","ж"],["ck","к"],["ll","лл"],["tion","цион"]];
- let out=name.toLowerCase();
- for(const [a,b] of pairs)out=out.replaceAll(a,b);
- const map={a:"а",b:"б",c:"к",d:"д",e:"е",f:"ф",g:"г",h:"х",i:"и",j:"й",k:"к",l:"л",m:"м",n:"н",o:"о",p:"п",q:"к",r:"р",s:"с",t:"т",u:"у",v:"в",w:"в",x:"кс",y:"и",z:"з"};
- return [...out].map(ch=>map[ch]??ch).join("");
-}
-function scaleForm(power){
- const forms={3:"тысяч",6:"миллионов",9:"миллиардов",12:"триллионов",15:"квадриллионов",18:"квинтиллионов",21:"секстиллионов",24:"септиллионов",27:"октиллионов",30:"нониллионов",33:"дециллионов"};
- if(forms[power])return forms[power];
- const singular=known[power]||toCyrillic(zillionName(BigInt((power-3)/3)));
- return singular.endsWith("иллион")?singular.slice(0,-6)+"иллионов":singular;
-}
+function fmt(s){return s.replace(/\\B(?=(\\d{3})+(?!\\d))/g," ");}
 function describe(raw){
- let p;
- const word=raw.toLowerCase().replace(/ё/g,"е");
- if(word==="гуголплекс"||word==="googolplex")p=googol;
- else if(word==="гугол"||word==="гогол"||word==="googol")p=100n;
- else if(word==="миллион")p=6n;
- else if(word==="миллиард")p=9n;
- else if(word==="триллион")p=12n;
- else if(/^\d+$/.test(raw))p=BigInt(raw);
- else throw new Error("Введи количество нулей цифрами.");
- if(p<1n)throw new Error("Количество нулей должно быть больше нуля.");
- if(p>googol)throw new Error("Слишком большое число.");
- if(p===1n)return {title:"Десять",notation:"10¹",zeros:"1"};
- if(p===2n)return {title:"Сто",notation:"10²",zeros:"2"};
- if(p===100n)return {title:"Гугол",notation:"10¹⁰⁰",zeros:"100"};
- if(p===googol)return {title:"Гуголплекс",notation:"10^(10¹⁰⁰)",zeros:"гугол"};
- const r=Number((p-3n)%3n);
- const basePower=Number(p-BigInt(r));
- const index=(p-3n-BigInt(r))/3n;
- const base=scaleForm(basePower);
- let title;
- if(known[Number(p)])title=known[Number(p)];
- else if(r===1)title="Десять "+base;
- else if(r===2)title="Сто "+base;
- else title=toCyrillic(zillionName(index));
- return {title,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString())};
+  let p;
+  const word=raw.toLowerCase().replace(/ё/g,"е");
+  if(word==="гуголплекс"||word==="googolplex")p=googol;
+  else if(word==="гугол"||word==="гогол"||word==="googol")p=100n;
+  else if(/^\\d+$/.test(raw))p=BigInt(raw);
+  else throw new Error("Введи показатель степени цифрами.");
+  if(p<1n)throw new Error("Показатель степени должен быть больше нуля.");
+  if(p>googol)throw new Error("Слишком большое число.");
+  if(p===1n)return {title:"Десять",notation:"10¹",zeros:"1"};
+  if(p===2n)return {title:"Сто",notation:"10²",zeros:"2"};
+  if(p===100n)return {title:"Гугол",notation:"10¹⁰⁰",zeros:"100"};
+  if(p===googol)return {title:"Гуголплекс",notation:"10^(10¹⁰⁰)",zeros:"гугол"};
+  const n=Number(p);
+  let title=known[n]||"Общепринятого названия нет";
+  if(!known[n]){
+    for(const base of Object.keys(known).map(Number).sort((a,b)=>b-a)){
+      if(n===base+1){title="Десять "+plural[base];break;}
+      if(n===base+2){title="Сто "+plural[base];break;}
+    }
+  }
+  return {title,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString())};
 }
 function show(){
- const raw=document.getElementById("power").value.trim().replace(/[ ,]/g,"");
- const box=document.getElementById("result");
- try{
-  const d=describe(raw);
-  let html="<h2>"+d.title+"</h2><p><b>Число:</b> <span class='number'>"+d.notation+"</span></p><p><b>Нулей:</b> "+d.zeros+"</p>";
-  box.innerHTML=html;
- }catch(e){box.innerHTML='<p class="error">'+e.message+"</p>";}
+  const raw=document.getElementById("power").value.trim().replace(/[ ,]/g,"");
+  const box=document.getElementById("result");
+  try{
+    const d=describe(raw);
+    box.innerHTML="<h2>"+d.title+"</h2><p><b>Число:</b> <span class='number'>"+d.notation+"</span></p><p><b>Нулей:</b> "+d.zeros+"</p>";
+  }catch(e){box.innerHTML='<p class="error">'+e.message+"</p>";}
 }
 document.getElementById("show").addEventListener("click",show);
 document.getElementById("power").addEventListener("keydown",e=>{if(e.key==="Enter")show();});
