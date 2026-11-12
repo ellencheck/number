@@ -49,13 +49,13 @@ const plural={
   33:"дециллионов"
 };
 const googol=10n**100n;
-function fmt(s){return s.replace(/\\B(?=(\\d{3})+(?!\\d))/g," ");}
+function fmt(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g," ");}
 function describe(raw){
   let p;
   const word=raw.toLowerCase().replace(/ё/g,"е");
   if(word==="гуголплекс"||word==="googolplex")p=googol;
   else if(word==="гугол"||word==="гогол"||word==="googol")p=100n;
-  else if(/^\\d+$/.test(raw))p=BigInt(raw);
+  else if(/^\d+$/.test(raw))p=BigInt(raw);
   else throw new Error("Введи показатель степени цифрами.");
   if(p<1n)throw new Error("Показатель степени должен быть больше нуля.");
   if(p>googol)throw new Error("Слишком большое число.");
