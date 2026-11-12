@@ -128,11 +128,22 @@ function describe(raw){
   }
   if(rem===1||rem===2){
     const q=p-BigInt(rem);
+    const basePower=Number(q);
     const baseIndex=Number(q/3n-1n);
+    const pluralNames={
+      3:"тысяч",6:"миллионов",9:"миллиардов",12:"триллионов",
+      15:"квадриллионов",18:"квинтиллионов",21:"секстиллионов",
+      24:"септиллионов",27:"октиллионов",30:"нониллионов",
+      33:"дециллионов",63:"вигинтиллионов",303:"центиллионов",
+      3003:"миллиллионов"
+    };
+    if(basePower===3){
+      return {title:(rem===1?"Десять тысяч":"Сто тысяч"),notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Составное числительное",detail:"Название составлено по обычным правилам русского языка."};
+    }
     if(baseIndex>=1&&baseIndex<=1000){
-      const basePower=Number(q);
       const baseName=common[basePower]||toRussian(illionName(baseIndex));
-      return {title:(rem===1?"Десять ":"Сто ")+baseName+"ов",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Составное название",detail:"Это не отдельное название степени: число равно "+(rem===1?"10":"100")+" × 10^"+q.toString()+"."};
+      const plural=pluralNames[basePower]||baseName+"ов";
+      return {title:(rem===1?"Десять ":"Сто ")+plural,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Составное числительное",detail:"Это не отдельное название степени: число равно "+(rem===1?"10":"100")+" × 10^"+q.toString()+"."};
     }
   }
   return {title:"Отдельного названия нет",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Точная степенная запись",detail:"Показатель не соответствует отдельной позиции в выбранной системе именования."};
