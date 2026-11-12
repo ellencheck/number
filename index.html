@@ -10,8 +10,8 @@
 <body><main class="container">
 <h1>🔢 Энциклопедия больших чисел</h1>
 
-<p class="subtitle">Введи количество нулей после единицы. Например: 6 — миллион, 9 — миллиард, 100 — гугол. Или выбери пример ниже.</p>
-<input id="power" type="text" inputmode="numeric" placeholder="Например: 6, 9, 100 или гугол" aria-label="Количество нулей">
+<p class="subtitle">Хочешь узнать название большого числа? Введи число нулей после единицы — или нажми на один из трёх примеров ниже.</p>
+<input id="power" type="text" inputmode="numeric" placeholder="Например: 100 или гугол" aria-label="Количество нулей">
 <button class="mainbtn" id="show">Узнать число</button>
 <div class="quick">
 <button data-p="6">Миллион · 10⁶</button>
@@ -60,8 +60,12 @@ function fmt(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g," ");}
 const googol=10n**100n;
 function describe(raw){
  let p;
- if(raw.toLowerCase()==="googolplex"||raw.toLowerCase()==="гуголплекс")p=googol;
- else if(raw.toLowerCase()==="googol"||raw.toLowerCase()==="гугол"||raw.toLowerCase()==="гогол")p=100n;
+ const word=raw.toLowerCase().replace(/ё/g,"е");
+ if(word==="googolplex"||word==="гуголплекс")p=googol;
+ else if(word==="googol"||word==="гугол"||word==="гогол")p=100n;
+ else if(word==="миллион")p=6n;
+ else if(word==="миллиард")p=9n;
+ else if(word==="триллион")p=12n;
  else if(/^\d+$/.test(raw))p=BigInt(raw);
  else throw new Error("Введи целое число цифрами или слово «гуголплекс».");
  if(p<1n)throw new Error("Показатель должен быть больше нуля.");
