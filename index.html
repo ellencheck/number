@@ -1,103 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Энциклопедия больших чисел</title>
 <style>
-*{box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:28px 15px;display:flex;justify-content:center;align-items:center}
-.container{background:#1e293b;padding:28px;border-radius:22px;width:100%;max-width:650px;text-align:center;box-shadow:0 15px 45px rgba(0,0,0,.4)}
-h1{color:#7dd3fc;font-size:27px}
-.subtitle{color:#cbd5e1;line-height:1.6}
-input{width:100%;padding:15px;margin-top:15px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:19px;text-align:center}
-button{width:100%;padding:13px;margin-top:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-size:16px;font-weight:bold;cursor:pointer}
-button:hover{background:#7dd3fc}
-.result{margin-top:22px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere;text-align:left}
-.result h2{text-align:center;color:#7dd3fc}
-.number{color:#facc15;font-size:18px;font-weight:bold;overflow-wrap:anywhere}
-.small{color:#94a3b8;font-size:14px}
-.error{color:#fca5a5}
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
-.quick button{font-size:14px;padding:10px 5px;margin:0}
-.note{font-size:13px;color:#94a3b8;line-height:1.5;margin-top:18px}
-@media(max-width:430px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:20px}}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:25px 14px;display:flex;justify-content:center;align-items:center}.container{background:#1e293b;padding:26px;border-radius:22px;width:100%;max-width:680px;box-shadow:0 15px 45px #0006}h1{text-align:center;color:#7dd3fc;font-size:27px}.subtitle{text-align:center;color:#cbd5e1;line-height:1.6}input{width:100%;padding:15px;margin-top:12px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:18px}button{padding:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}.mainbtn{width:100%;margin-top:10px;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.quick button{font-size:14px}.result{margin-top:20px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere}.result h2{text-align:center;color:#7dd3fc}.number{color:#facc15;font-weight:bold;overflow-wrap:anywhere}.small{color:#94a3b8;font-size:13px}.error{color:#fca5a5}.note{color:#94a3b8;font-size:13px;line-height:1.5;margin-top:18px}@media(max-width:450px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:18px}}
 </style>
 </head>
-<body>
-<div class="container">
+<body><main class="container">
 <h1>🔢 Энциклопедия больших чисел</h1>
-<p class="subtitle">Введи количество нулей после единицы — то есть показатель степени в записи 10ⁿ. Программа объяснит, как устроено число.</p>
-<input type="text" id="power" inputmode="numeric" placeholder="Например: 106 или 1000000" aria-label="Количество нулей">
-<button id="showButton">Узнать число</button>
+<p class="subtitle">Введи количество нулей после единицы — показатель степени в записи 10ⁿ. Энциклопедия строит названия по расширенной системе Conway–Wechsler и показывает точную степень.</p>
+<input id="power" type="text" inputmode="numeric" placeholder="Например: 118, 1000 или гугол" aria-label="Показатель степени">
+<button class="mainbtn" id="show">Узнать число</button>
 <div class="quick">
-<button data-power="6">Миллион · 6</button>
-<button data-power="33">Дециллион · 33</button>
-<button data-power="99">10⁹⁹ · 99 нулей</button>
-<button data-power="100">Гугол · 100</button>
-<button data-power="103">103 нуля</button>
-<button data-power="106">106 нулей</button>
-<button data-power="109">109 нулей</button>
-<button data-power="112">112 нулей</button>
-<button data-power="115">115 нулей</button>
-<button data-power="10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">Гуголплекс</button>
+<button data-p="115">10¹¹⁵ · 115 нулей</button><button data-p="118">10¹¹⁸ · 118 нулей</button>
+<button data-p="121">10¹²¹ · 121 ноль</button><button data-p="124">10¹²⁴ · 124 нуля</button>
+<button data-p="303">Центиллион · 303</button><button data-p="3003">10³⁰⁰³ · 3003 нуля</button>
+<button data-p="100">Гугол · 100</button><button data-p="googol">Гуголплекс</button>
 </div>
-<div class="result" id="result" aria-live="polite">Здесь появится описание числа.</div>
-<p class="note">Важно: не у каждого количества нулей есть отдельное короткое название. Названия «миллион», «миллиард», «триллион» и далее идут с шагом в три нуля. Поэтому энциклопедия объясняет и промежуточные степени.</p>
-</div>
+<div class="result" id="result" aria-live="polite">Здесь появится название и объяснение.</div>
+<p class="note">Названия после первых привычных -иллионов — не все словарные слова. Для очень больших степеней используется математическая система образования названий Conway–Wechsler. Она позволяет строить названия по группам, а не хранить бесконечный список вручную. В русскоязычной среде нет единого официального перевода всех этих редких названий, поэтому генератор показывает международное написание.</p>
+</main>
 <script>
-const names = {
-3:"тысяча",6:"миллион",9:"миллиард",12:"триллион",15:"квадриллион",
-18:"квинтиллион",21:"секстиллион",24:"септиллион",27:"октиллион",
-30:"нониллион",33:"дециллион",36:"ундециллион",39:"дуодециллион",
-42:"тредециллион",45:"кваттуордециллион",48:"квиндециллион",
-51:"сексдециллион",54:"септендециллион",57:"октодециллион",
-60:"новемдециллион",63:"вигинтиллион",66:"унвигинтиллион",
-69:"дуовигинтиллион",72:"тревигинтиллион",75:"кваттуорвигинтиллион",
-78:"квинвигинтиллион",81:"сексвигинтиллион",84:"септенвигинтиллион",
-87:"октовигинтиллион",90:"новемвигинтиллион",93:"тригинтиллион",
-96:"унтригинтиллион",99:"дуотригинтиллион"
+const known={
+3:"тысяча",6:"миллион",9:"миллиард",12:"триллион",15:"квадриллион",18:"квинтиллион",21:"секстиллион",24:"септиллион",27:"октиллион",30:"нониллион",33:"дециллион",36:"ундециллион",39:"дуодециллион",42:"тредециллион",45:"кваттуордециллион",48:"квиндециллион",51:"сексдециллион",54:"септендециллион",57:"октодециллион",60:"новемдециллион",63:"вигинтиллион",66:"унвигинтиллион",69:"дуовигинтиллион",72:"тревигинтиллион",75:"кваттуорвигинтиллион",78:"квинвигинтиллион",81:"сексвигинтиллион",84:"септенвигинтиллион",87:"октовигинтиллион",90:"новемвигинтиллион",93:"тригинтиллион",96:"унтригинтиллион",99:"дуотригинтиллион"
 };
-const input = document.getElementById("power");
-const result = document.getElementById("result");
-function groupedPower(p){return p.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ");}
-function fullNumber(p){
-  if(p>300n) return null;
-  return "1"+"0".repeat(Number(p));
+const units=["","un","duo","tre","quattuor","quin","se","septe","octo","nove"];
+const tens=[
+["",[]],["deci",[,,,,,,,"n",,"n",0]],["viginti",[,,,"s",,,"s","m",,"m",0]],
+["triginta",[,,,"s",,,"s","n",,"n",1]],["quadraginta",[,,,"s",,,"s","n",,"n",1]],
+["quinquaginta",[,,,"s",,,"s","n",,"n",1]],["sexaginta",[,,,,,,,"n",,"n",1]],
+["septuaginta",[,,,,,,,"n",,"n",1]],["octoginta",[,,,,,,"x","m",,"m",1]],["nonaginta",[,,,,,,,,,,1]]
+];
+const hundreds=[
+["",[]],["centi",[,,,,,,"x","n",,"n"]],["ducenti",[,,,,,,,"n",,"n"]],
+["trecenti",[,,,"s",,,"s","n",,"n"]],["quadringenti",[,,,"s",,,"s","n",,"n"]],
+["quingenti",[,,,"s",,,"s","n",,"n"]],["sescenti",[,,,,,,,"n",,"n"]],
+["septingenti",[,,,,,,,"n",,"n"]],["octingenti",[,,,,,,"x","m",,"m"]],["nongenti",[,,,,,,,,,]]
+];
+function groupName(power){
+ if(power===0)return "nillion";
+ if(power===1)return "thousand";
+ if(power<11)return ["","thousand","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion"][power];
+ const v=power-1,h=Math.floor(v/100),t=Math.floor(v%100/10),u=v%10;
+ let un=units[u],tn=tens[t][0]||"",hn=hundreds[h][0]||"";
+ if(!h&&tens[t][1][10])tn=tn.slice(0,-1)+"i";
+ if(t)tn=(tens[t][1][u]||"")+tn;
+ else if(h&&!t)hn=(hundreds[h][1][u]||"")+hn;
+ return un+tn+hn+"llion";
+}
+function zillionName(index){
+ if(index<0n)return "";
+ if(index<1000n)return groupName(Number(index)+1);
+ const chunks=[];let n=index;
+ while(n>0n){chunks.unshift(Number(n%1000n));n/=1000n;}
+ return chunks.map((part,i)=>i===chunks.length-1?groupName(part+1):groupName(part===0?0:part+1).replace(/on$/,"i")).join("");
+}
+function fmt(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g," ");}
+const googol=10n**100n;
+function describe(raw){
+ let p;
+ if(raw.toLowerCase()==="googolplex"||raw.toLowerCase()==="гуголплекс")p=googol;
+ else if(raw.toLowerCase()==="googol"||raw.toLowerCase()==="гугол")p=100n;
+ else if(/^\d+$/.test(raw))p=BigInt(raw);
+ else throw new Error("Введи целое число цифрами или слово «гуголплекс».");
+ if(p<1n)throw new Error("Показатель должен быть больше нуля.");
+ if(p>googol)throw new Error("В этой версии верхняя граница — показатель гуголплекса, то есть 10¹⁰⁰.");
+ if(p===1n)return {title:"десять",detail:"Единица и один ноль.",notation:"10¹",zeros:"1"};
+ if(p===2n)return {title:"сто",detail:"Единица и два нуля.",notation:"10²",zeros:"2"};
+ if(p===100n)return {title:"гугол (googol)",detail:"Единица со 100 нулями. Это особое название, не обычное название ступени -иллионов.",notation:"10¹⁰⁰",zeros:"100"};
+ const r=Number((p-3n)%3n);
+ const index=(p-3n-BigInt(r))/3n;
+ const base=zillionName(index);
+ const lead=r===0?"":r===1?"ten ":"one hundred ";
+ let title;
+ if(p===googol)title="гуголплекс (googolplex)";
+ else if(known[Number(p)])title=known[Number(p)];
+ else title=lead+base;
+ let detail="Систематическое название по расширенной короткой шкале Conway–Wechsler. ";
+ if(r===0)detail+="Показатель делится на три: это ступень -иллионов.";
+ if(r===1)detail+="Остаток 1 означает множитель десять перед названием -иллиона.";
+ if(r===2)detail+="Остаток 2 означает множитель сто перед названием -иллиона.";
+ if(p===googol)detail+=" Гуголплекс — это 10 в степени гугол; в нём гугол нулей. Его короткое имя используется вместо записи с невообразимым количеством цифр.";
+ let systematic=lead+base;
+ return {title,detail,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),systematic};
 }
 function show(){
-  const raw=input.value.trim().replace(/[\s,]+/g,"");
-  if(!/^\d+$/.test(raw)){result.innerHTML='<p class="error">Введи целое неотрицательное количество нулей — только цифры.</p>';return;}
-  const p=BigInt(raw);
-  if(p<1n){result.innerHTML='<p class="error">Введи число от 1 и выше.</p>';return;}
-  if(p>1000000n && p!==10n**100n){result.innerHTML='<p class="error">Для обычного режима введи до 1 000 000 нулей. Особый случай — гуголплекс: его показатель равен гуголу (10¹⁰⁰).</p>';return;}
-  let title="Степень десяти";
-  let explanation="";
-  if(p===1n) title="десять";
-  else if(p===2n) title="сто";
-  else if(p===100n){title="гугол (googol)";explanation="Гугол — это единица со 100 нулями: 10¹⁰⁰.";}
-  else if(p===10n**100n){title="гуголплекс (googolplex)";explanation="Гуголплекс — это 10 в степени гугол, то есть 10^(10¹⁰⁰). В нём один гугол нулей. Полностью выписать такое число физически невозможно.";}
-  else if(names[Number(p)]){title=names[Number(p)];explanation="Название из короткой шкалы. Каждая следующая ступень -иллионов увеличивает показатель на три.";}
-  else if(p%3n===0n){title="Ступень системы -иллионов";explanation="Это показатель, кратный трём. Порядковый номер ступени после миллиона: "+(p/3n-1n).toString()+". Для очень больших ступеней существуют разные варианты систематического образования названий, поэтому программа не выдаёт выдуманное слово за общепринятое.";}
-  else{
-    const lower=(p/3n)*3n;
-    const upper=lower+3n;
-    const lowerName=names[Number(lower)]||("10^"+lower.toString()+" — предыдущая ступень");
-    const upperName=names[Number(upper)]||("10^"+upper.toString()+" — следующая ступень");
-    title="Отдельного короткого названия нет";
-    explanation="Это промежуточная степень. Она находится между "+lowerName+" (10^"+lower.toString()+") и "+upperName+" (10^"+upper.toString()+"). Названия -иллионов идут с шагом в три нуля.";
-  }
-  const full=fullNumber(p);
-  const powerText=p.toString()==="10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"?"10¹⁰⁰":"10<sup>"+groupedPower(p)+"</sup>";
-  let html="<h2>"+title+"</h2><p><b>Число:</b> <span class='number'>"+powerText+"</span></p><p><b>Количество нулей:</b> "+groupedPower(p)+"</p><p><b>Объяснение:</b> "+explanation+"</p>";
-  if(full!==null) html+="<p class='small'>Полная запись:</p><div class='number'>"+full+"</div>";
-  else if(p===10n**100n) html+="<p class='number'>10^(10¹⁰⁰)</p><p class='small'>Вместо записи с невероятным количеством цифр используется степень.</p>";
-  else html+="<p class='small'>Полная запись слишком длинная для показа на странице. Точная компактная запись: 10^"+p.toString()+".</p>";
-  result.innerHTML=html;
+ const raw=document.getElementById("power").value.trim().replace(/[ ,]/g,"");
+ const box=document.getElementById("result");
+ try{
+  const d=describe(raw);
+  let html="<h2>"+d.title+"</h2><p><b>Точная запись:</b> <span class='number'>"+d.notation+"</span></p><p><b>Количество нулей:</b> "+d.zeros+"</p><p><b>Объяснение:</b> "+d.detail+"</p>";
+  if(d.systematic)html+="<p><b>Систематическое название:</b></p><div class='number'>"+d.systematic+"</div>";
+  if(BigInt(d.zeros.replace(/ /g,""))<=300n)html+="<p class='small'>Полная запись:</p><div class='number'>1"+ "0".repeat(Number(BigInt(d.zeros.replace(/ /g,""))))+"</div>";
+  else html+="<p class='small'>Полная запись числа слишком длинная для показа; точная степень указана выше.</p>";
+  box.innerHTML=html;
+ }catch(e){box.innerHTML='<p class="error">'+e.message+"</p>";}
 }
-document.getElementById("showButton").addEventListener("click",show);
-input.addEventListener("keydown",e=>{if(e.key==="Enter")show();});
-document.querySelectorAll("[data-power]").forEach(button=>button.addEventListener("click",()=>{input.value=button.dataset.power;show();}));
-</script>
-</body>
-</html>
+document.getElementById("show").addEventListener("click",show);
+document.getElementById("power").addEventListener("keydown",e=>{if(e.key==="Enter")show();});
+document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("power").value=b.dataset.p;show();}));
+</script></body></html>
