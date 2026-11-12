@@ -78,7 +78,7 @@ function translit(s){
 function russianName(n,latin){return russianNames[n]||translit(latin);}
 function superscript(s){return String(s).replace(/[0-9-]/g,ch=>({"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻"}[ch]));}
 function showResult(title,p,label,latin="",zeros=fmt(p),notation="10"){
- const tags={common:["Общепринятое","tag-green"],rare:["Редкое","tag-amber"],system:["Систематическое","tag-violet"],none:["Нет","tag-none"]};
+ const tags={common:["Общепринятое","tag-green"],rare:["Редкое","tag-amber"],system:["Систематическое","tag-violet"]};
  const [caption,tag]=tags[label];
  const powerText=notation==="10"?"10"+superscript(p):notation;
  document.getElementById("result").innerHTML="<h2>"+title+"</h2><p><span class='tag "+tag+"'>"+caption+"</span></p>"+(latin?"<p><b>Латинская форма:</b> "+latin+"</p>":"")+"<p><b>Степень:</b> <span class='number'>"+powerText+"</span></p><p><b>Количество нулей:</b> "+zeros+"</p>";
@@ -105,7 +105,8 @@ function describe(raw){
  const n=Number(base/3n-1n);
  const latin=illionName(n),baseName=russianName(n,latin);
  const plural=baseName==="миллиард"?"миллиардов":baseName.replace(/иллион$/,"иллионов");
- showResult((rem===1?"Десять ":"Сто ")+plural,p.toString(),"none",latin,fmt(p.toString())); 
+ const label=n<=9?"common":(n===100?"rare":"system");
+  showResult((rem===1?"Десять ":"Сто ")+plural,p.toString(),label,latin,fmt(p.toString())); 
 }
 function show(){
  try{describe(document.getElementById("power").value);}
