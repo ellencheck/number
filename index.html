@@ -65,7 +65,7 @@ function illionName(n){
   const g=groups[i];
   if(g===0){out+="nilli";continue;}
   const base=g<=9?standardLatin[g]:prefix999(g)+"illion";
-  out+=base.replace(/on$/,"i");
+  out+=base.replace(/on$/,"");
  }
  const last=groups[groups.length-1];
  out+=last===0?"nillion":(last<=9?standardLatin[last]:prefix999(last)+"illion");
@@ -97,7 +97,7 @@ function describe(raw){
  if(p===100n){showResult("Гугол","100","rare","googol","100");return;}
  if(p%3n===0n){
   const n=Number(p/3n-1n),latin=illionName(n),title=russianName(n,latin);
-  const label=n<=9?"common":"system";
+  const label=n<=9?"common":(n===100?"rare":"system");
   showResult(title,p.toString(),label,n<=9?"":latin,fmt(p.toString()));return;
  }
  const rem=Number(p%3n),base=p-BigInt(rem);
