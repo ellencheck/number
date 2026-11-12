@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Энциклопедия больших чисел</title>
 <style>
-*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:25px 14px;display:flex;justify-content:center;align-items:center}.container{background:#1e293b;padding:26px;border-radius:22px;width:100%;max-width:680px;box-shadow:0 15px 45px #0006}h1{text-align:center;color:#7dd3fc;font-size:27px}.subtitle{text-align:center;color:#cbd5e1;line-height:1.6}input{width:100%;padding:15px;margin-top:12px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:18px}button{padding:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}.mainbtn{width:100%;margin-top:10px;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.quick button{font-size:14px}.result{margin-top:20px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere}.result h2{text-align:center;color:#7dd3fc}.number{color:#facc15;font-weight:bold;overflow-wrap:anywhere}.small{color:#94a3b8;font-size:13px}.error{color:#fca5a5}.note{color:#cbd5e1;font-size:13px;line-height:1.55;margin-top:14px}.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:22px;padding:12px;background:#172554;border:1px solid #334155;border-radius:14px}.legend-item{display:flex;align-items:center;gap:9px;font-size:13px;line-height:1.2}.dot{flex:0 0 11px;height:11px;border-radius:50%;margin-top:3px}.green{background:#34d399}.amber{background:#fbbf24}.violet{background:#c084fc}.tag{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:bold}.tag-green{background:#064e3b;color:#a7f3d0}.tag-amber{background:#78350f;color:#fde68a}.tag-violet{background:#581c87;color:#e9d5ff}.tag-none{background:#334155;color:#cbd5e1}.sources{font-size:12px;color:#94a3b8;line-height:1.6;margin-top:14px}.sources a{color:#7dd3fc}@media(max-width:450px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:18px}}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:25px 14px;display:flex;justify-content:center;align-items:center}.container{background:#1e293b;padding:26px;border-radius:22px;width:100%;max-width:680px;box-shadow:0 15px 45px #0006}h1{text-align:center;color:#7dd3fc;font-size:27px}.subtitle{text-align:center;color:#cbd5e1;line-height:1.6}input{width:100%;padding:15px;margin-top:12px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:18px}button{padding:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}.mainbtn{width:100%;margin-top:10px;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.quick button{font-size:14px}.result{margin-top:20px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere}.result h2{text-align:center;color:#7dd3fc}.number{color:#facc15;font-weight:bold;overflow-wrap:anywhere}.small{color:#94a3b8;font-size:13px}.error{color:#fca5a5}.note{color:#cbd5e1;font-size:13px;line-height:1.55;margin-top:14px}.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:22px;padding:12px;background:#172554;border:1px solid #334155;border-radius:14px}.legend-item{display:flex;align-items:center;gap:9px;font-size:13px;line-height:1.2}.dot{flex:0 0 11px;height:11px;border-radius:50%;margin-top:3px}.green{background:#34d399}.amber{background:#fbbf24}.violet{background:#c084fc}.tag{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:bold}.tag-green{background:#064e3b;color:#a7f3d0}.tag-amber{background:#78350f;color:#fde68a}.tag-violet{background:#581c87;color:#e9d5ff}.tag-none{background:#334155;color:#cbd5e1}.tag-none{background:#334155;color:#cbd5e1}.sources{font-size:12px;color:#94a3b8;line-height:1.6;margin-top:14px}.sources a{color:#7dd3fc}@media(max-width:450px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:18px}}
 </style>
 </head>
 <body><main class="container">
@@ -28,82 +28,88 @@
 
 </main>
 <script>
-const names = {
-  1:["миллион","million","common"],
-   2:["миллиард","milliard","common"],
-  3:["триллион","trillion","common"],
-  4:["квадриллион","quadrillion","common"],
-  5:["квинтиллион","quintillion","common"],
-  6:["секстиллион","sextillion","common"],
-  7:["септиллион","septillion","common"],
-  8:["октиллион","octillion","common"],
-  9:["нониллион","nonillion","common"],
-  10:["дециллион","decillion","system"],
-  11:["ундециллион","undecillion","system"],
-  12:["дуодециллион","duodecillion","system"],
-  13:["тредециллион","tredecillion","system"],
-  14:["кваттуордециллион","quattuordecillion","system"],
-  15:["квиндециллион","quindecillion","system"],
-  16:["седециллион","sedecillion","system"],
-  17:["септендециллион","septendecillion","system"],
-  18:["октодециллион","octodecillion","system"],
-  19:["новемдециллион","novemdecillion","system"],
-  20:["вигинтиллион","vigintillion","system"],
-  32:["дуотригинтиллион","duotrigintillion","system"],
-  33:["трестригинтиллион","trestrigintillion","system"],
-  34:["кваттуортригинтиллион","quattuortrigintillion","system"],
-  100:["центиллион","centillion","rare"],
-  1000:["миллиллион","millillion","rare"]
-};
-const status = {
-  common:["Общепринятое","tag-green"],
-  rare:["Редкое","tag-amber"],
-  system:["Систематическое","tag-violet"],
-  none:["Нет","tag-none"]
-};
-const superscript = s => String(s).replace(/-/g,"⁻").replace(/0/g,"⁰").replace(/1/g,"¹").replace(/2/g,"²").replace(/3/g,"³").replace(/4/g,"⁴").replace(/5/g,"⁵").replace(/6/g,"⁶").replace(/7/g,"⁷").replace(/8/g,"⁸").replace(/9/g,"⁹");
-const fmt = s => String(s).replace(/\B(?=(\d{3})+(?!\d))/g," ");
-function render(title,p,label,latin="",zeros=p){
- const [word,tag]=status[label];
- const latinLine=latin?'<p><b>Латинская форма:</b> '+latin+'</p>':"";
- document.getElementById("result").innerHTML =
-  '<h2>'+title+'</h2><p><span class="tag '+tag+'">'+word+'</span></p>'+
-  latinLine+'<p><b>Степень:</b> <span class="number">10'+superscript(p)+'</span></p>'+
-  '<p><b>Количество нулей:</b> '+zeros+'</p>';
+const standardLatin={1:"million",2:"billion",3:"trillion",4:"quadrillion",5:"quintillion",6:"sextillion",7:"septillion",8:"octillion",9:"nonillion"};
+const russianNames={1:"миллион",2:"миллиард",3:"триллион",4:"квадриллион",5:"квинтиллион",6:"секстиллион",7:"септиллион",8:"октиллион",9:"нониллион",10:"дециллион",11:"ундециллион",12:"дуодециллион",13:"тредециллион",14:"кваттуордециллион",15:"квиндециллион",16:"седециллион",17:"септендециллион",18:"октодециллион",19:"новемдециллион",20:"вигинтиллион",32:"дуотригинтиллион",33:"трестригинтиллион",34:"кваттуортригинтиллион",100:"центиллион"};
+const U={1:["un","n"],2:["duo",""],3:["tre","*"],4:["quattuor",""],5:["quin",""],6:["se","sx"],7:["septe","mn"],8:["octo",""],9:["nove","mn"]};
+const T={1:["deci","n"],2:["viginti","ms"],3:["triginta","ns"],4:["quadraginta","ns"],5:["quinquaginta","ns"],6:["sexaginta","n"],7:["septuaginta","n"],8:["octoginta","mx"],9:["nonaginta",""]};
+const H={1:["centi","nx"],2:["ducenti","n"],3:["trecenti","ns"],4:["quadringenti","ns"],5:["quingenti","ns"],6:["sescenti","n"],7:["septingenti","n"],8:["octingenti","mx"],9:["nongenti",""]};
+const fmt=s=>String(s).replace(/\B(?=(\d{3})+(?!\d))/g," ");
+function prefix999(n){
+ const u=n%10,t=Math.floor(n/10)%10,h=Math.floor(n/100)%10;
+ const parts=[];
+ if(u)parts.push({v:U[u][0],tail:U[u][1],special:u===3||u===6||u===7||u===9});
+ if(t)parts.push({v:T[t][0],head:T[t][1]});
+ if(h)parts.push({v:H[h][0],head:H[h][1]});
+ let out="";
+ for(let i=0;i<parts.length;i++){
+  const part=parts[i];
+  if(i){
+   const prev=parts[i-1];
+   const match=[..."mn sx"].find(ch=>ch!==" "&&(prev.tail||"").includes(ch)&&(part.head||"").includes(ch));
+   if(match)out+=match;
+   else if(prev.v==="tre"&&/[sx]/.test(part.head||""))out+="s";
+   else if(prev.v==="se"&&/[sx]/.test(part.head||""))out+=part.head.includes("x")?"x":"s";
+   else if((prev.v==="septe"||prev.v==="nove")&&/[mn]/.test(part.head||""))out+=part.head.includes("m")?"m":"n";
+  }
+  out+=part.v;
+ }
+ return out.replace(/[aeiou]$/,"");
+}
+function illionName(n){
+ if(n>=1&&n<=9)return standardLatin[n];
+ if(n<1000)return prefix999(n)+"illion";
+ const groups=[];let v=BigInt(n);
+ while(v>0n){groups.unshift(Number(v%1000n));v/=1000n;}
+ let out="";
+ for(let i=0;i<groups.length-1;i++){
+  const g=groups[i];
+  if(g===0){out+="nilli";continue;}
+  const base=g<=9?standardLatin[g]:prefix999(g)+"illion";
+  out+=base.replace(/on$/,"i");
+ }
+ const last=groups[groups.length-1];
+ out+=last===0?"nillion":(last<=9?standardLatin[last]:prefix999(last)+"illion");
+ return out;
+}
+function translit(s){
+ const map={a:"а",b:"б",c:"к",d:"д",e:"е",f:"ф",g:"г",h:"х",i:"и",j:"й",k:"к",l:"л",m:"м",n:"н",o:"о",p:"п",q:"к",r:"р",s:"с",t:"т",u:"у",v:"в",w:"в",x:"кс",y:"и",z:"з"};
+ return [...s].map(ch=>map[ch]||ch).join("");
+}
+function russianName(n,latin){return russianNames[n]||translit(latin);}
+function superscript(s){return String(s).replace(/[0-9-]/g,ch=>({"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻"}[ch]));}
+function showResult(title,p,label,latin="",zeros=fmt(p),notation="10"){
+ const tags={common:["Общепринятое","tag-green"],rare:["Редкое","tag-amber"],system:["Систематическое","tag-violet"],none:["Нет","tag-none"]};
+ const [caption,tag]=tags[label];
+ const powerText=notation==="10"?"10"+superscript(p):notation;
+ document.getElementById("result").innerHTML="<h2>"+title+"</h2><p><span class='tag "+tag+"'>"+caption+"</span></p>"+(latin?"<p><b>Латинская форма:</b> "+latin+"</p>":"")+"<p><b>Степень:</b> <span class='number'>"+powerText+"</span></p><p><b>Количество нулей:</b> "+zeros+"</p>";
 }
 function describe(raw){
- const s=raw.trim().replace(/[\s,]/g,"").toLowerCase();
- if(s==="гугол"||s==="googol"){render("Гугол","100","rare","googol","100");return;}
- if(s==="гуголплекс"||s==="googolplex"){render("Гуголплекс","(10¹⁰⁰)","rare","","гугол");return;}
- let p;
- if(!/^\d+$/.test(s))throw Error("Введи целый показатель степени.");
- p=BigInt(s);
- if(p>1000000000000n)throw Error("Слишком большой показатель.");
- if(p===0n){render("Один","0","common","","0");return;}
- if(p===1n){render("Десять","1","common","","1");return;}
- if(p===2n){render("Сто","2","common","","2");return;}
- if(p===3n){render("Тысяча","3","common","","3");return;}
- if(p===100n){render("Гугол","100","rare","googol","100");return;}
- if(p===303n){render("Центиллион","303","rare","centillion","303");return;}
+ const s=raw.trim().replace(/[\\s,]/g,"").toLowerCase();
+ if(s==="гугол"||s==="googol"){showResult("Гугол","100","rare","googol","100");return;}
+ if(s==="гуголплекс"||s==="googolplex"){showResult("Гуголплекс","","rare","googolplex","гугол","10^(10¹⁰⁰)");return;}
+ if(!/^\\d+$/.test(s))throw Error("Введи показатель степени цифрами.");
+ const p=BigInt(s);
+ if(p>3000000000000n)throw Error("Слишком большой показатель для словесного названия.");
+ if(p===0n){showResult("Один","0","common","","0");return;}
+ if(p===1n){showResult("Десять","1","common","","1");return;}
+ if(p===2n){showResult("Сто","2","common","","2");return;}
+ if(p===3n){showResult("Тысяча","3","common","","3");return;}
+ if(p===100n){showResult("Гугол","100","rare","googol","100");return;}
  if(p%3n===0n){
-  const index=Number(p/3n-1n), item=names[index];
-  if(item){render(item[0],p.toString(),item[2],item[1],fmt(p.toString()));return;}
-  render("Отдельного названия нет",p.toString(),"none","",fmt(p.toString()));return;
+  const n=Number(p/3n-1n),latin=illionName(n),title=russianName(n,latin);
+  const label=n<=9?"common":"system";
+  showResult(title,p.toString(),label,n<=9?"":latin,fmt(p.toString()));return;
  }
- const rem=Number(p%3n), base=p-BigInt(rem);
- if(base===3n){
-  render(rem===1?"Десять тысяч":"Сто тысяч",p.toString(),"common","",fmt(p.toString()));return;
- }
- const index=Number(base/3n-1n), item=names[index];
- if(item){
-  const plural = item[0]==="миллиард"?"миллиардов":item[0].replace(/иллион$/,"иллионов");
-  render((rem===1?"Десять ":"Сто ")+plural,p.toString(),"none",item[1],fmt(p.toString()));return;
- }
- render("Отдельного названия нет",p.toString(),"none","",fmt(p.toString()));
+ const rem=Number(p%3n),base=p-BigInt(rem);
+ if(base===3n){showResult(rem===1?"Десять тысяч":"Сто тысяч",p.toString(),"common","",fmt(p.toString()));return;}
+ const n=Number(base/3n-1n);
+ const latin=illionName(n),baseName=russianName(n,latin);
+ const plural=baseName==="миллиард"?"миллиардов":baseName.replace(/иллион$/,"иллионов");
+ showResult((rem===1?"Десять ":"Сто ")+plural,p.toString(),"none",latin,fmt(p.toString())); 
 }
 function show(){
- const raw=document.getElementById("power").value;
- try{describe(raw);}catch(e){document.getElementById("result").innerHTML='<p class="error">'+e.message+'</p>';}
+ try{describe(document.getElementById("power").value);}
+ catch(e){document.getElementById("result").innerHTML="<p class='error'>"+e.message+"</p>";}
 }
 document.getElementById("show").addEventListener("click",show);
 document.getElementById("power").addEventListener("keydown",e=>{if(e.key==="Enter")show();});
