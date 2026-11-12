@@ -4,159 +4,176 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Энциклопедия больших чисел</title>
 <style>
-*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:25px 14px;display:flex;justify-content:center;align-items:center}.container{background:#1e293b;padding:26px;border-radius:22px;width:100%;max-width:680px;box-shadow:0 15px 45px #0006}h1{text-align:center;color:#7dd3fc;font-size:27px}.subtitle{text-align:center;color:#cbd5e1;line-height:1.6}input{width:100%;padding:15px;margin-top:12px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:18px}button{padding:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}.mainbtn{width:100%;margin-top:10px;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.quick button{font-size:14px}.result{margin-top:20px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere}.result h2{text-align:center;color:#7dd3fc}.number{color:#facc15;font-weight:bold;overflow-wrap:anywhere}.small{color:#94a3b8;font-size:13px}.error{color:#fca5a5}.note{color:#94a3b8;font-size:13px;line-height:1.5;margin-top:18px}@media(max-width:450px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:18px}}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f172a,#312e81);color:#e2e8f0;min-height:100vh;margin:0;padding:25px 14px;display:flex;justify-content:center;align-items:center}.container{background:#1e293b;padding:26px;border-radius:22px;width:100%;max-width:680px;box-shadow:0 15px 45px #0006}h1{text-align:center;color:#7dd3fc;font-size:27px}.subtitle{text-align:center;color:#cbd5e1;line-height:1.6}input{width:100%;padding:15px;margin-top:12px;border-radius:10px;border:2px solid #475569;background:#0f172a;color:white;font-size:18px}button{padding:12px;border:0;border-radius:10px;background:#38bdf8;color:#0f172a;font-weight:bold;cursor:pointer}.mainbtn{width:100%;margin-top:10px;font-size:17px}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.quick button{font-size:14px}.result{margin-top:20px;padding:20px;background:#0f172a;border-radius:14px;line-height:1.7;overflow-wrap:anywhere}.result h2{text-align:center;color:#7dd3fc}.number{color:#facc15;font-weight:bold;overflow-wrap:anywhere}.small{color:#94a3b8;font-size:13px}.error{color:#fca5a5}.note{color:#cbd5e1;font-size:13px;line-height:1.55;margin-top:14px}.legend{display:grid;grid-template-columns:1fr;gap:8px;margin-top:22px;padding:16px;background:#172554;border:1px solid #334155;border-radius:14px}.legend-item{display:flex;align-items:flex-start;gap:9px;font-size:13px;line-height:1.45}.dot{flex:0 0 11px;height:11px;border-radius:50%;margin-top:3px}.green{background:#34d399}.amber{background:#fbbf24}.violet{background:#c084fc}.tag{display:inline-block;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:bold}.tag-green{background:#064e3b;color:#a7f3d0}.tag-amber{background:#78350f;color:#fde68a}.tag-violet{background:#581c87;color:#e9d5ff}.sources{font-size:12px;color:#94a3b8;line-height:1.6;margin-top:14px}.sources a{color:#7dd3fc}@media(max-width:450px){.quick{grid-template-columns:repeat(2,1fr)}.container{padding:18px}}
 </style>
 </head>
 <body><main class="container">
 <h1>🔢 Энциклопедия больших чисел</h1>
 
-<p class="subtitle">Введи количество нулей — генератор определит число, название и систему именования.</p>
-<p class="note">Основной режим — короткая шкала (миллиард = 10⁹). Для степеней от 10³³ генератор строит систематические названия по правилам Конвея—Векслера. Они логичны и воспроизводимы, но не все являются словарными или общеупотребительными. Для остальных степеней показывается точная математическая запись.</p>
-<input id="power" type="text" inputmode="numeric" placeholder="Например: 99 или 303" aria-label="Показатель степени десяти">
-<button class="mainbtn" id="show">Рассчитать</button>
+<p class="subtitle">Введи показатель степени десяти (количество нулей) — получишь название и объяснение.</p>
+<input id="power" type="text" inputmode="numeric" placeholder="Например: 6, 36, 99, 303" aria-label="Показатель степени десяти">
+<button class="mainbtn" id="show">Узнать название</button>
 <div class="quick">
 <button data-p="6">Миллион · 10⁶</button>
 <button data-p="9">Миллиард · 10⁹</button>
 <button data-p="12">Триллион · 10¹²</button>
 <button data-p="33">Дециллион · 10³³</button>
+<button data-p="36">Ундециллион · 10³⁶</button>
 <button data-p="99">10⁹⁹</button>
 <button data-p="100">Гугол · 10¹⁰⁰</button>
+<button data-p="105">10¹⁰⁵</button>
 <button data-p="303">Центиллион · 10³⁰³</button>
 <button data-p="3003">Миллиллион · 10³⁰⁰³</button>
 <button data-p="googolplex">Гуголплекс</button>
 </div>
 <div class="result" id="result" aria-live="polite">Здесь появится результат.</div>
+<section class="legend" aria-label="Обозначения статуса названий">
+<div class="legend-item"><span class="dot green"></span><span><b>Устоявшееся название</b> — привычное и закрепившееся в справочниках: миллион, миллиард, триллион и т. д.</span></div>
+<div class="legend-item"><span class="dot amber"></span><span><b>Редкое, но зафиксированное название</b> — встречается в словарях и справочниках, хотя в обычной речи почти не используется: дециллион, ундециллион, дуодециллион и другие.</span></div>
+<div class="legend-item"><span class="dot violet"></span><span><b>Систематическое название</b> — построено по латинским числовым корням в системе Конвея—Векслера. Оно математически образуемо, но не обязательно является общеупотребительным словом.</span></div>
+<p class="note">Правило короткой шкалы: каждый следующий «-иллион» в 1000 раз больше предыдущего. Например, дециллион = 10³³, ундециллион = 10³⁶. Для нестандартных степеней генератор показывает составное название или точную запись, а не выдумывает отдельное имя.</p>
+</section>
+<p class="sources">Справка: <a href="https://www.mrob.com/pub/math/largenum.html" target="_blank" rel="noopener">Robert Munafo — Large Numbers</a> (правила Конвея—Векслера); <a href="https://www.bdb.ru/kb/digits.shtml" target="_blank" rel="noopener">BDB — названия больших чисел</a>.</p>
 
 </main>
-<script>
-const common={
-  3:"тысяча",6:"миллион",9:"миллиард",12:"триллион",
-  15:"квадриллион",18:"квинтиллион",21:"секстиллион",
-  24:"септиллион",27:"октиллион",30:"нониллион",
-  33:"дециллион",63:"вигинтиллион",303:"центиллион",
-  3003:"миллиллион"
+<script>const commonNames={
+  1:"million",2:"billion",3:"trillion",4:"quadrillion",5:"quintillion",
+  6:"sextillion",7:"septillion",8:"octillion",9:"nonillion",
+  10:"decillion",11:"undecillion",12:"duodecillion",13:"tredecillion",
+  14:"quattuordecillion",15:"quindecillion",16:"sedecillion",
+  17:"septendecillion",18:"octodecillion",19:"novendecillion",20:"vigintillion",
+  100:"centillion",1000:"millillion"
 };
 const googol=10n**100n;
-const ones={
-  1:["un",""],2:["duo",""],3:["tre","*"],4:["quattuor",""],
-  5:["quin",""],6:["se","sx"],7:["septe","mn"],8:["octo",""],9:["nove","mn"]
+const units={
+  1:{v:"un",tail:""},2:{v:"duo",tail:""},3:{v:"tre",tail:"",special:true},
+  4:{v:"quattuor",tail:""},5:{v:"quin",tail:""},6:{v:"se",tail:"sx"},
+  7:{v:"septe",tail:"mn"},8:{v:"octo",tail:""},9:{v:"nove",tail:"mn"}
 };
 const tens={
-  1:["deci","n"],2:["viginti","ms"],3:["triginta","ns"],4:["quadraginta","ns"],
-  5:["quinquaginta","ns"],6:["sexaginta","n"],7:["septuaginta","n"],
-  8:["octoginta","mx"],9:["nonaginta",""]
+  1:{v:"deci",head:"n"},2:{v:"viginti",head:"ms"},3:{v:"triginta",head:"ns"},
+  4:{v:"quadraginta",head:"ns"},5:{v:"quinquaginta",head:"ns"},
+  6:{v:"sexaginta",head:"n"},7:{v:"septuaginta",head:"n"},
+  8:{v:"octoginta",head:"mx"},9:{v:"nonaginta",head:""}
 };
 const hundreds={
-  1:["centi","nx"],2:["ducenti","n"],3:["trecenti","ns"],4:["quadringenti","ns"],
-  5:["quingenti","ns"],6:["sescenti","n"],7:["septingenti","n"],
-  8:["octingenti","mx"],9:["nongenti",""]
+  1:{v:"centi",head:"nx"},2:{v:"ducenti",head:"n"},3:{v:"trecenti",head:"ns"},
+  4:{v:"quadringenti",head:"ns"},5:{v:"quingenti",head:"ns"},
+  6:{v:"sescenti",head:"n"},7:{v:"septingenti",head:"n"},
+  8:{v:"octingenti",head:"mx"},9:{v:"nongenti",head:""}
 };
 function fmt(s){return s.replace(/\B(?=(\d{3})+(?!\d))/g," ");}
-function chunkName(n){
-  if(n===0)return "";
-  const parts=[];
+function prefix999(n){
+  if(n===0)return "nilli";
   const u=n%10,t=Math.floor(n/10)%10,h=Math.floor(n/100)%10;
-  if(u)parts.push({v:ones[u][0],tail:ones[u][1],special:u===3});
-  if(t)parts.push({v:tens[t][0],head:tens[t][1],tail:""});
-  if(h)parts.push({v:hundreds[h][0],head:hundreds[h][1],tail:""});
+  const parts=[];
+  if(u)parts.push({...units[u]});
+  if(t)parts.push({...tens[t]});
+  if(h)parts.push({...hundreds[h]});
   let out=parts[0].v;
   for(let i=1;i<parts.length;i++){
     const prev=parts[i-1],next=parts[i];
-    const commonLetters=[..."mn sx".replace(/ /g,"")].filter(ch=>prev.tail.includes(ch)&&next.head.includes(ch));
-    if(prev.special && /[sx]/.test(next.head||"")) out+="s";
-    else if(commonLetters.length) out+=commonLetters[0];
+    const shared=[..."mn sx".replace(/ /g,"")].find(ch=>(prev.tail||"").includes(ch)&&(next.head||"").includes(ch));
+    if(shared)out+=shared;
+    else if(prev.special&&/[sx]/.test(next.head||""))out+="s";
     out+=next.v;
   }
   return out.replace(/[aeiou]$/i,"");
 }
+function illionPart(n){
+  if(commonNames[n])return commonNames[n];
+  return prefix999(n)+"illion";
+}
 function illionName(index){
-  if(index<=9){
-    return ["","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion"][index];
+  if(index<=999)return illionPart(index);
+  const groups=[];
+  let value=index;
+  while(value>0){
+    groups.unshift(Number(value%1000n));
+    value/=1000n;
   }
-  if(index===10)return "decillion";
-  if(index===11)return "undecillion";
-  if(index===12)return "duodecillion";
-  if(index===13)return "tredecillion";
-  if(index===14)return "quattuordecillion";
-  if(index===15)return "quindecillion";
-  if(index===16)return "sedecillion";
-  if(index===17)return "septendecillion";
-  if(index===18)return "octodecillion";
-  if(index===19)return "novendecillion";
-  if(index===20)return "vigintillion";
-  if(index===100)return "centillion";
-  if(index===1000)return "millillion";
-  const name=chunkName(index%10)+chunkName(Math.floor(index/10)%10*10)+chunkName(Math.floor(index/100)%10*100);
-  return name+"illion";
+  if(groups.length>5)throw new Error("Показатель слишком велик для словесной записи. Используй точную степень десяти.");
+  let name="";
+  for(let i=0;i<groups.length-1;i++){
+    const g=groups[i];
+    if(g===0)name+="nilli";
+    else name+=illionPart(g).replace(/on$/,"i");
+  }
+  const last=groups[groups.length-1];
+  name+=last===0?"nillion":illionPart(last);
+  return name;
 }
 function toRussian(s){
-  const map=[["qu","кв"],["ch","ч"],["ph","ф"],["th","т"],["y","и"],["j","дж"],["x","кс"],["c","к"],["v","в"],["w","в"],["q","к"],["u","у"],["a","а"],["b","б"],["d","д"],["e","е"],["f","ф"],["g","г"],["h","х"],["i","и"],["k","к"],["l","л"],["m","м"],["n","н"],["o","о"],["p","п"],["r","р"],["s","с"],["t","т"]];
-  let out=s;
-  for(const [from,to] of map)out=out.replaceAll(from,to);
-  return out;
+  let out=s.toLowerCase().replace(/qu/g,"кв");
+  out=out.replace(/c(?=[ei])/g,"ц").replace(/c/g,"к");
+  const map={a:"а",b:"б",d:"д",e:"е",f:"ф",g:"г",h:"х",i:"и",j:"й",k:"к",l:"л",m:"м",n:"н",o:"о",p:"п",q:"к",r:"р",s:"с",t:"т",u:"у",v:"в",w:"в",x:"кс",y:"и",z:"з"};
+  return [...out].map(ch=>map[ch]||ch).join("");
+}
+function pluralIllion(name){
+  return name.replace(/иллион$/,"иллионов");
+}
+function baseName(index){
+  const latin=illionName(index);
+  const russian=toRussian(latin);
+  return {latin,russian};
+}
+function classify(index,power){
+  if(index<=9)return {label:"Устоявшееся название",tag:"tag-green",kind:"common"};
+  if(index<=20||index===100||index===1000)return {label:"Редкое, но зафиксированное название",tag:"tag-amber",kind:"attested"};
+  return {label:"Систематическое название по латинской модели",tag:"tag-violet",kind:"system"};
 }
 function describe(raw){
   const word=raw.toLowerCase().replace(/ё/g,"е");
   let p;
-  if(word==="гуголплекс"||word==="googolplex")return {title:"Гуголплекс",notation:"10^(10¹⁰⁰)",zeros:"гугол",kind:"Особое именованное число",detail:"Это единица с гуголом нулей."};
+  if(word==="гуголплекс"||word==="googolplex")return {title:"Гуголплекс",notation:"10^(10¹⁰⁰)",zeros:"гугол",label:"Особое именованное число",tag:"tag-amber",detail:"Гуголплекс — единица с гуголом нулей. Это не степень вида 10ⁿ с обычным конечным показателем."};
   if(word==="гугол"||word==="гогол"||word==="googol")p=100n;
   else if(word==="центиллион"||word==="centillion")p=303n;
   else if(word==="миллион"||word==="million")p=6n;
   else if(word==="миллиард"||word==="billion")p=9n;
   else if(/^\d+$/.test(raw))p=BigInt(raw);
-  else throw new Error("Введи целый показатель степени или название из быстрых примеров.");
-  if(p<1n)throw new Error("Показатель степени должен быть положительным.");
-  if(p===1n)return {title:"Десять",notation:"10¹",zeros:"1",kind:"Обычное название",detail:""};
-  if(p===2n)return {title:"Сто",notation:"10²",zeros:"2",kind:"Обычное название",detail:""};
-  if(p===100n)return {title:"Гугол",notation:"10¹⁰⁰",zeros:"100",kind:"Устоявшееся специальное название",detail:"Гугол — название числа 10¹⁰⁰; это не степень с гуголом нулей."};
-  if(p>1000000n)return {title:"Отдельное короткое название не рассчитано",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Точная степенная запись",detail:"Для столь большого показателя удобнее использовать математическую запись."};
+  else throw new Error("Введи показатель степени цифрами или выбери пример.");
+  if(p<0n)throw new Error("Показатель степени не может быть отрицательным.");
+  if(p===0n)return {title:"Один",notation:"10⁰",zeros:"0",label:"Обычное название",tag:"tag-green",detail:"Любое ненулевое число в нулевой степени равно единице."};
+  if(p===1n)return {title:"Десять",notation:"10¹",zeros:"1",label:"Обычное название",tag:"tag-green",detail:""};
+  if(p===2n)return {title:"Сто",notation:"10²",zeros:"2",label:"Обычное название",tag:"tag-green",detail:""};
+  if(p===100n)return {title:"Гугол",notation:"10¹⁰⁰",zeros:"100",label:"Устоявшееся специальное название",tag:"tag-amber",detail:"Гугол — единица со 100 нулями."};
+  if(p===googol)return {title:"Гуголплекс",notation:"10^(10¹⁰⁰)",zeros:"гугол",label:"Устоявшееся специальное название",tag:"tag-amber",detail:"Единица с гуголом нулей."};
+  if(p>3000000000000n)return {title:"Слишком большой показатель для словесного имени",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),label:"Точная математическая запись",tag:"tag-green",detail:"Число записано точно. Для такого показателя словесное имя здесь не строится."};
   const rem=Number(p%3n);
-  const base=(p-BigInt(rem))/3n-1n;
-  if(rem===0 && base>=1n && base<=1000n){
-    const idx=Number(base);
-    let latin=common[Number(p)]?null:illionName(idx);
-    const known=common[Number(p)];
-    const isDictionary=Number(p)<=33;
-    const title=known||toRussian(latin);
-    let detail;
-    let kind;
-    if(isDictionary){kind="Устоявшееся название короткой шкалы";detail="Название закреплено в традиционной системе наименований.";}
-    else if(Number(p)===63||Number(p)===303||Number(p)===3003){kind="Известное систематическое название";detail="Для этой степени существует традиционно приводимое название; оно относится к короткой шкале.";}
-    else {kind="Систематическое название по Конвею—Векслеру";detail="Латинская форма: "+(latin||illionName(idx))+". Русская запись передана приблизительно; единого нормативного русского написания для всех таких форм нет.";}
-    if(known && Number(p)>33){latin=illionName(idx);}
-    return {title,latin,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind,detail};
+  if(p===3n)return {title:"Тысяча",notation:"10³",zeros:"3",label:"Устоявшееся название",tag:"tag-green",detail:""};
+  if(rem===0){
+    const index=p/3n-1n;
+    const idx=Number(index);
+    const known=commonNames[idx];
+    const name=baseName(idx);
+    const status=classify(idx,Number(p));
+    const title=known?name.russian:name.russian;
+    const latin=(idx<=9||idx===100||idx===1000)?"":name.latin;
+    const detail=status.kind==="common"?"Привычное название короткой шкалы: каждое следующее название в 1000 раз больше предыдущего.":status.kind==="attested"?"Название встречается в справочниках, но в повседневной речи используется редко.": "Форма образована по системе Конвея—Векслера из латинских числовых элементов. Это систематическое имя, а не обязательно общеупотребительное слово.";
+    return {title,latin,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),label:status.label,tag:status.tag,detail};
   }
-  if(rem===1||rem===2){
-    const q=p-BigInt(rem);
-    const basePower=Number(q);
-    const baseIndex=Number(q/3n-1n);
-    const pluralNames={
-      3:"тысяч",6:"миллионов",9:"миллиардов",12:"триллионов",
-      15:"квадриллионов",18:"квинтиллионов",21:"секстиллионов",
-      24:"септиллионов",27:"октиллионов",30:"нониллионов",
-      33:"дециллионов",63:"вигинтиллионов",303:"центиллионов",
-      3003:"миллиллионов"
-    };
-    if(basePower===3){
-      return {title:(rem===1?"Десять тысяч":"Сто тысяч"),notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Составное числительное",detail:"Название составлено по обычным правилам русского языка."};
-    }
-    if(baseIndex>=1&&baseIndex<=1000){
-      const baseName=common[basePower]||toRussian(illionName(baseIndex));
-      const plural=pluralNames[basePower]||baseName+"ов";
-      return {title:(rem===1?"Десять ":"Сто ")+plural,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Составное числительное",detail:"Это не отдельное название степени: число равно "+(rem===1?"10":"100")+" × 10^"+q.toString()+"."};
-    }
+  const basePower=p-BigInt(rem);
+  if(basePower===3n){
+    return {title:rem===1?"Десять тысяч":"Сто тысяч",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),label:"Составное числительное",tag:"tag-green",detail:"Название составлено по обычным правилам русского языка."};
   }
-  return {title:"Отдельного названия нет",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),kind:"Точная степенная запись",detail:"Показатель не соответствует отдельной позиции в выбранной системе именования."};
+  const index=basePower/3n-1n;
+  if(index>=1n&&index<=1000000000000n){
+    const n=Number(index);
+    const base=baseName(n);
+    const status=classify(n,Number(basePower));
+    const plural=pluralIllion(base.russian);
+    return {title:(rem===1?"Десять ":"Сто ")+plural,latin:"10 × "+base.latin,notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),label:"Составное числительное",tag:"tag-green",detail:"Это десятикратное или стократное число с указанным названием; самостоятельным названием степени оно не является. Основа: "+status.label.toLowerCase()+"."};
+  }
+  return {title:"Отдельного названия нет",notation:"10^"+fmt(p.toString()),zeros:fmt(p.toString()),label:"Точная математическая запись",tag:"tag-green",detail:"Для этой степени в выбранной системе отдельное словесное имя не образуется."};
 }
 function show(){
   const raw=document.getElementById("power").value.trim().replace(/[ ,]/g,"");
   const box=document.getElementById("result");
   try{
     const d=describe(raw);
-    box.innerHTML="<h2>"+d.title+"</h2><p class='small'><b>"+d.kind+"</b></p>"+(d.latin?"<p><b>Форма по системе:</b> "+d.latin+"</p>":"")+(d.detail?"<p>"+d.detail+"</p>":"")+"<p><b>Число:</b> <span class='number'>"+d.notation+"</span></p><p><b>Количество нулей:</b> "+d.zeros+"</p>";
+    box.innerHTML="<h2>"+d.title+"</h2><p><span class='tag "+d.tag+"'>"+d.label+"</span></p>"+(d.latin?"<p><b>Латинская форма:</b> "+d.latin+"</p>":"")+(d.detail?"<p>"+d.detail+"</p>":"")+"<p><b>Степень:</b> <span class='number'>"+d.notation+"</span></p><p><b>Количество нулей:</b> "+d.zeros+"</p>";
   }catch(e){box.innerHTML='<p class="error">'+e.message+"</p>";}
 }
 document.getElementById("show").addEventListener("click",show);
 document.getElementById("power").addEventListener("keydown",e=>{if(e.key==="Enter")show();});
-document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("power").value=b.dataset.p;show();}));
-</script></body></html>
+document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("power").value=b.dataset.p;show();}));</script></body></html>
