@@ -30,7 +30,7 @@
 <script>
 const standardLatin={1:"million",2:"billion",3:"trillion",4:"quadrillion",5:"quintillion",6:"sextillion",7:"septillion",8:"octillion",9:"nonillion"};
 const russianNames={1:"миллион",2:"миллиард",3:"триллион",4:"квадриллион",5:"квинтиллион",6:"секстиллион",7:"септиллион",8:"октиллион",9:"нониллион",10:"дециллион",11:"ундециллион",12:"дуодециллион",13:"тредециллион",14:"кваттуордециллион",15:"квиндециллион",16:"седециллион",17:"септендециллион",18:"октодециллион",19:"новемдециллион",20:"вигинтиллион",32:"дуотригинтиллион",33:"трестригинтиллион",34:"кваттуортригинтиллион",100:"центиллион"};
-const U={1:["un","n"],2:["duo",""],3:["tre","*"],4:["quattuor",""],5:["quin",""],6:["se","sx"],7:["septe","mn"],8:["octo",""],9:["nove","mn"]};
+const U={1:["un",""],2:["duo",""],3:["tre","*"],4:["quattuor",""],5:["quin",""],6:["se","sx"],7:["septe","mn"],8:["octo",""],9:["nove","mn"]};
 const T={1:["deci","n"],2:["viginti","ms"],3:["triginta","ns"],4:["quadraginta","ns"],5:["quinquaginta","ns"],6:["sexaginta","n"],7:["septuaginta","n"],8:["octoginta","mx"],9:["nonaginta",""]};
 const H={1:["centi","nx"],2:["ducenti","n"],3:["trecenti","ns"],4:["quadringenti","ns"],5:["quingenti","ns"],6:["sescenti","n"],7:["septingenti","n"],8:["octingenti","mx"],9:["nongenti",""]};
 const fmt=s=>String(s).replace(/\B(?=(\d{3})+(?!\d))/g," ");
