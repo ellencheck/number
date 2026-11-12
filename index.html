@@ -9,29 +9,16 @@
 </head>
 <body><main class="container">
 <h1>🔢 Энциклопедия больших чисел</h1>
-<p class="subtitle">Введи количество нулей после единицы — показатель степени в записи 10ⁿ. Энциклопедия строит названия по расширенной системе систематической схеме короткой шкалы и показывает точную степень.</p>
+
 <input id="power" type="text" inputmode="numeric" placeholder="Например: 118, 1000 или гугол" aria-label="Показатель степени">
 <button class="mainbtn" id="show">Узнать число</button>
 <div class="quick">
 <button data-p="6">Миллион · 10⁶</button>
 <button data-p="9">Миллиард · 10⁹</button>
 <button data-p="12">Триллион · 10¹²</button>
-<button data-p="15">Квадриллион · 10¹⁵</button>
-<button data-p="18">Квинтиллион · 10¹⁸</button>
-<button data-p="21">Секстиллион · 10²¹</button>
-<button data-p="24">Септиллион · 10²⁴</button>
-<button data-p="27">Октиллион · 10²⁷</button>
-<button data-p="30">Нониллион · 10³⁰</button>
-<button data-p="33">Дециллион · 10³³</button>
-<button data-p="63">Вигинтиллион · 10⁶³</button>
-<button data-p="93">Тригинтиллион · 10⁹³</button>
-<button data-p="99">Дуотригинтиллион · 10⁹⁹</button>
-<button data-p="100">Гугол · 10¹⁰⁰</button>
-<button data-p="303">Центиллион · 10³⁰³</button>
-<button data-p="googol">Гуголплекс</button>
 </div>
-<div class="result" id="result" aria-live="polite">Здесь появится название и объяснение.</div>
-<p class="note">Названия после первых привычных -иллионов — не все словарные слова. Для очень больших степеней используется математическая система образования названий систематической схеме короткой шкалы. Она позволяет строить названия по группам, а не хранить бесконечный список вручную. В русскоязычной среде нет единого официального перевода всех этих редких названий, поэтому генератор показывает международное написание.</p>
+<div class="result" id="result" aria-live="polite">Здесь появится результат.</div>
+
 </main>
 <script>
 const known={
@@ -102,10 +89,7 @@ function show(){
  const box=document.getElementById("result");
  try{
   const d=describe(raw);
-  let html="<h2>"+d.title+"</h2><p><b>Точная запись:</b> <span class='number'>"+d.notation+"</span></p><p><b>Количество нулей:</b> "+d.zeros+"</p><p><b>Объяснение:</b> "+d.detail+"</p>";
-  if(d.systematic)html+="<p><b>Систематическое название:</b></p><div class='number'>"+d.systematic+"</div>";
-  if(BigInt(d.zeros.replace(/ /g,""))<=300n)html+="<p class='small'>Полная запись:</p><div class='number'>1"+ "0".repeat(Number(BigInt(d.zeros.replace(/ /g,""))))+"</div>";
-  else html+="<p class='small'>Полная запись числа слишком длинная для показа; точная степень указана выше.</p>";
+  let html="<h2>"+d.title+"</h2><p><b>Число:</b> <span class='number'>"+d.notation+"</span></p><p><b>Нулей:</b> "+d.zeros+"</p>";
   box.innerHTML=html;
  }catch(e){box.innerHTML='<p class="error">'+e.message+"</p>";}
 }
